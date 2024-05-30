@@ -1,6 +1,5 @@
 package com.example.taskmanager.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +28,7 @@ private val LightColorScheme = lightColorScheme(
     onTertiaryContainer = DarkSilver,
     outline = ChineseSilver,
     background = White
+
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
