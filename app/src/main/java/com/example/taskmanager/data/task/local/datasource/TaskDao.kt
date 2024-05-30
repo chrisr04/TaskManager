@@ -15,10 +15,10 @@ interface TaskDao {
     fun getTasks(): Flow<List<TaskRoomModel>>
 
     @Insert
-    suspend fun addTask(task:TaskRoomModel)
+    suspend fun addTask(task: TaskRoomModel)
 
     @Update
-    suspend fun updateTask(task:TaskRoomModel)
+    suspend fun updateTask(task: TaskRoomModel)
 
     @Delete
     suspend fun deleteTask(task: TaskRoomModel)

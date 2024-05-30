@@ -33,12 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.taskmanager.domain.task.entities.Task
+import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
 
 @Composable
 fun CreateTaskDialog(
     showDialog: Boolean,
-    onDismiss: () -> Unit,
-    onAddTask: (Task) -> Unit
+    tasksViewModel: TasksViewModel,
 ) {
     if (!showDialog) return
 
@@ -46,7 +46,7 @@ fun CreateTaskDialog(
     var taskDescription by rememberSaveable { mutableStateOf("") }
     val isButtonEnabled = taskName.isNotEmpty()
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(onDismissRequest = { tasksViewModel.onCloseTaskDialog() }) {
         Column(
             Modifier
                 .fillMaxWidth()
@@ -58,7 +58,7 @@ fun CreateTaskDialog(
             Icon(
                 modifier = Modifier
                     .align(Alignment.End)
-                    .clickable { onDismiss() },
+                    .clickable { tasksViewModel.onCloseTaskDialog() },
                 imageVector = Icons.Filled.Close,
                 contentDescription = "Close create task dialog"
             )
@@ -121,7 +121,7 @@ fun CreateTaskDialog(
                 contentPadding = PaddingValues(12.dp),
                 enabled = isButtonEnabled,
                 onClick = {
-                    onAddTask(
+                    tasksViewModel.onCreateTask(
                         Task(
                             id = System.currentTimeMillis(),
                             name = taskName,
