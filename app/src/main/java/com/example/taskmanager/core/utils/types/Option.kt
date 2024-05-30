@@ -1,6 +1,6 @@
 package com.example.taskmanager.core.utils.types
 
-sealed class Option<out S>() {
+sealed class Option<out S> {
 
     data object None : Option<Nothing>()
 
@@ -10,11 +10,10 @@ sealed class Option<out S>() {
 
     fun isNone(): Boolean = this is None
 
-    fun getSome(): S? = if (this is Some) (this as Some).some else null
+    fun getSome(): S? = if (this is Some) this.some else null
 
     fun <T> fold(onNone: () -> T, onSome: (S) -> T): T = when (this) {
         is None -> onNone()
         is Some -> onSome(some)
     }
-
 }
