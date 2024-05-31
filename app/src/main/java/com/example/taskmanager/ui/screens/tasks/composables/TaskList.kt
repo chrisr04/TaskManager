@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.taskmanager.domain.task.entities.Task
-import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
 
 @Composable
 fun TaskList(
