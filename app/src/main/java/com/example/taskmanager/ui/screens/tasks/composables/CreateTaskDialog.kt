@@ -38,7 +38,8 @@ import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
 @Composable
 fun CreateTaskDialog(
     showDialog: Boolean,
-    tasksViewModel: TasksViewModel,
+    onCreateTask: (Task) -> Unit,
+    onDismiss: () -> Unit
 ) {
     if (!showDialog) return
 
@@ -46,7 +47,7 @@ fun CreateTaskDialog(
     var taskDescription by rememberSaveable { mutableStateOf("") }
     val isButtonEnabled = taskName.isNotEmpty()
 
-    Dialog(onDismissRequest = { tasksViewModel.onCloseTaskDialog() }) {
+    Dialog(onDismissRequest = onDismiss) {
         Column(
             Modifier
                 .fillMaxWidth()
@@ -58,7 +59,7 @@ fun CreateTaskDialog(
             Icon(
                 modifier = Modifier
                     .align(Alignment.End)
-                    .clickable { tasksViewModel.onCloseTaskDialog() },
+                    .clickable(onClick = onDismiss),
                 imageVector = Icons.Filled.Close,
                 contentDescription = "Close create task dialog"
             )
@@ -121,14 +122,13 @@ fun CreateTaskDialog(
                 contentPadding = PaddingValues(12.dp),
                 enabled = isButtonEnabled,
                 onClick = {
-                    tasksViewModel.onCreateTask(
-                        Task(
-                            id = System.currentTimeMillis(),
-                            name = taskName,
-                            description = taskDescription,
-                            completed = false,
-                        )
+                    val newTask = Task(
+                        id = System.currentTimeMillis(),
+                        name = taskName,
+                        description = taskDescription,
+                        completed = false,
                     )
+                    onCreateTask(newTask)
                 }
             ) {
                 Text(text = "Agregar")

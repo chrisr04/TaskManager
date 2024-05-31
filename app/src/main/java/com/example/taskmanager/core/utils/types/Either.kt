@@ -10,9 +10,9 @@ sealed class Either<out L, out R> {
 
     fun isRight(): Boolean = this is Right
 
-    fun getLeft(): L? = if (this is Left) this.left else null
+    fun leftOrNull(): L? = if (this is Left) this.left else null
 
-    fun getRight(): R? = if (this is Right) this.right else null
+    fun rightOrNull(): R? = if (this is Right) this.right else null
 
     fun <T> fold(onLeft: (L) -> T, onRight: (R) -> T): T = when (this) {
         is Left -> onLeft(left)

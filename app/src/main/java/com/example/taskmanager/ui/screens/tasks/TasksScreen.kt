@@ -49,8 +49,19 @@ fun TasksScreen(tasksViewModel: TasksViewModel) {
                 .padding(innerPadding),
             contentAlignment = Alignment.Center
         ) {
-            TaskList(uiState.data.tasks, tasksViewModel)
-            CreateTaskDialog(uiState.data.showDialog, tasksViewModel)
+            TaskList(
+                tasks = uiState.data.tasks,
+                onDeleteTask = { tasksViewModel.onDeleteTask(it) },
+                onChangeTaskStatus = { task, completed ->
+                    val changedTask = task.copy(completed = completed)
+                    tasksViewModel.onChangeTaskStatus(changedTask)
+                },
+            )
+            CreateTaskDialog(
+                showDialog = uiState.data.showDialog,
+                onDismiss = { tasksViewModel.onCloseTaskDialog() },
+                onCreateTask = { tasksViewModel.onCreateTask(it) }
+            )
         }
     }
 }

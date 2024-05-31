@@ -24,17 +24,18 @@ import com.example.taskmanager.domain.task.entities.Task
 import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
 
 @Composable
-fun TaskList(tasks: List<Task>, tasksViewModel: TasksViewModel) {
+fun TaskList(
+    tasks: List<Task>,
+    onChangeTaskStatus: (Task, Boolean) -> Unit,
+    onDeleteTask: (Task) -> Unit
+) {
     LazyColumn(Modifier.fillMaxSize()) {
         item { TaskListHeader() }
         items(tasks, key = { it.id }) { task ->
             TaskItem(
                 task = task,
-                onCheckedChange = {
-                    val newTask = task.copy(completed = !task.completed)
-                    tasksViewModel.onChangeTaskStatus(newTask)
-                },
-                onClickDelete = { tasksViewModel.onDeleteTask(task) }
+                onCheckedChange = { onChangeTaskStatus(task, it) },
+                onClickDelete = { onDeleteTask(task) }
             )
             TaskItemSeparator()
         }

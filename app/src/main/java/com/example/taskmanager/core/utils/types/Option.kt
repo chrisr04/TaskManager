@@ -6,11 +6,11 @@ sealed class Option<out S> {
 
     data class Some<out S>(val some: S) : Option<S>()
 
-    fun isSome(): Boolean = this is Some
-
     fun isNone(): Boolean = this is None
 
-    fun getSome(): S? = if (this is Some) this.some else null
+    fun isSome(): Boolean = this is Some
+
+    fun someOrNull(): S? = if (this is Some) this.some else null
 
     fun <T> fold(onNone: () -> T, onSome: (S) -> T): T = when (this) {
         is None -> onNone()
