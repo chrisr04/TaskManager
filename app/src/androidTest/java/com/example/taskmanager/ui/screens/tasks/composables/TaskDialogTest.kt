@@ -15,7 +15,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 
-class CreateTaskDialogTest {
+class TaskDialogTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()
@@ -24,7 +24,7 @@ class CreateTaskDialogTest {
     fun whenShowDialogIsTrue_thenDialogIsVisible() {
         composeTestRule.setContent {
             TaskManagerTheme {
-                CreateTaskDialog(
+                TaskDialog(
                     showDialog = true,
                     onCreateTask = {},
                     onDismiss = {},
@@ -39,7 +39,7 @@ class CreateTaskDialogTest {
     fun whenShowDialogIsFalse_thenDialogIsNotVisible() {
         composeTestRule.setContent {
             TaskManagerTheme {
-                CreateTaskDialog(
+                TaskDialog(
                     showDialog = false,
                     onCreateTask = {},
                     onDismiss = {},
@@ -54,7 +54,7 @@ class CreateTaskDialogTest {
     fun whenNameInputIsEmpty_thenAddButtonIsDisabled() {
         composeTestRule.setContent {
             TaskManagerTheme {
-                CreateTaskDialog(
+                TaskDialog(
                     showDialog = true,
                     onCreateTask = {},
                     onDismiss = {},
@@ -72,7 +72,7 @@ class CreateTaskDialogTest {
     fun whenNameInputIsNotEmpty_thenAddButtonIsEnabled() {
         composeTestRule.setContent {
             TaskManagerTheme {
-                CreateTaskDialog(
+                TaskDialog(
                     showDialog = true,
                     onCreateTask = {},
                     onDismiss = {},
@@ -92,7 +92,7 @@ class CreateTaskDialogTest {
 
         composeTestRule.setContent {
             TaskManagerTheme {
-                CreateTaskDialog(
+                TaskDialog(
                     showDialog = true,
                     onCreateTask = { createdTask = it },
                     onDismiss = {},

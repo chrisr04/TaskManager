@@ -14,7 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.taskmanager.ui.screens.tasks.composables.AddTaskButton
-import com.example.taskmanager.ui.screens.tasks.composables.CreateTaskDialog
+import com.example.taskmanager.ui.screens.tasks.composables.TaskDialog
 import com.example.taskmanager.ui.screens.tasks.composables.TaskList
 import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksUiState.*
 import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
@@ -38,10 +38,10 @@ fun TasksScreen(tasksViewModel: TasksViewModel) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
             AddTaskButton { tasksViewModel.onOpenTaskDialog() }
         },
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -57,7 +57,7 @@ fun TasksScreen(tasksViewModel: TasksViewModel) {
                     tasksViewModel.onChangeTaskStatus(changedTask)
                 },
             )
-            CreateTaskDialog(
+            TaskDialog(
                 showDialog = uiState.data.showDialog,
                 onDismiss = { tasksViewModel.onCloseTaskDialog() },
                 onCreateTask = { tasksViewModel.onCreateTask(it) }

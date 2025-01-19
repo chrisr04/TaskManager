@@ -19,3 +19,10 @@ fun TaskRoomModel.toDomain() = Task(
     description = description,
     completed = completed,
 )
+
+fun Task.toLocal() = TaskRoomModel(
+    id = id,
+    name = name,
+    description = description,
+    completed = completed,
+)

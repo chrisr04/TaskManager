@@ -37,7 +37,7 @@ import com.example.taskmanager.domain.task.entities.Task
 import com.example.taskmanager.ui.screens.tasks.TasksScreenTags
 
 @Composable
-fun CreateTaskDialog(
+fun TaskDialog(
     showDialog: Boolean,
     onCreateTask: (Task) -> Unit,
     onDismiss: () -> Unit
