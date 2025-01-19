@@ -5,16 +5,16 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="addTaskButtonInit()">
+      <SelectionState runConfigName="CreateTaskDialogTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="buttonClick()">
+      <SelectionState runConfigName="whenShowDialogIsFalse_thenDialogIsNotVisible()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="buttonIsClicked()">
+      <SelectionState runConfigName="whenShowDialogIsTrue_thenDialogIsVisible()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="whenButtonIsClicked()">
+      <SelectionState runConfigName="whenAddButtonIsClicked_thenLaunchOnCreateTask()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

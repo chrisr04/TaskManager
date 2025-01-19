@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.taskmanager.domain.task.entities.Task
+import com.example.taskmanager.ui.screens.tasks.TasksScreenTags
 
 @Composable
 fun CreateTaskDialog(
@@ -53,6 +55,7 @@ fun CreateTaskDialog(
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color.White)
                 .padding(horizontal = 16.dp, vertical = 24.dp)
+                .testTag(TasksScreenTags.DIALOG)
 
         ) {
             Icon(
@@ -75,7 +78,8 @@ fun CreateTaskDialog(
                 value = taskName,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp),
+                    .height(50.dp)
+                    .testTag(TasksScreenTags.DIALOG_NAME_INPUT),
                 textStyle = TextStyle(lineHeight = 1.sp),
                 singleLine = true,
                 maxLines = 1,
@@ -99,7 +103,8 @@ fun CreateTaskDialog(
                 value = taskDescription,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp),
+                    .height(100.dp)
+                    .testTag(TasksScreenTags.DIALOG_DESCRIPTION_INPUT),
                 colors = OutlinedTextFieldDefaults.colors(
                     unfocusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
                     focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
@@ -117,7 +122,9 @@ fun CreateTaskDialog(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag(TasksScreenTags.DIALOG_ADD_BUTTON),
                 contentPadding = PaddingValues(12.dp),
                 enabled = isButtonEnabled,
                 onClick = {

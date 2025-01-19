@@ -15,7 +15,7 @@ class AddTaskButtonTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun whenButtonIsClicked() {
+    fun whenButtonIsClicked_thenOnClickIsLaunched() {
         var isClicked = false
 
         composeTestRule.setContent {
