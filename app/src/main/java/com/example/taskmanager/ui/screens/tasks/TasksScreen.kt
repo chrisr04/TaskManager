@@ -23,16 +23,12 @@ import com.example.taskmanager.ui.screens.tasks.viewmodel.TasksViewModel
 fun TasksScreen(tasksViewModel: TasksViewModel) {
     val uiState by tasksViewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val showErrorSnackbar = uiState is LoadTaskFailureState
 
-    LaunchedEffect(Unit) {
-        tasksViewModel.uiState.collect { uiState ->
-            when (uiState) {
-                is LoadTaskFailureState -> {
-                    snackbarHostState.showSnackbar(uiState.message)
-                }
-
-                else -> {}
-            }
+    LaunchedEffect(showErrorSnackbar) {
+        if(showErrorSnackbar){
+            val errorMessage = (uiState as LoadTaskFailureState).message
+            snackbarHostState.showSnackbar(errorMessage)
         }
     }
 
